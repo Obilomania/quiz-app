@@ -63,7 +63,7 @@ const Quiz = () => {
   return (
     <TheQuiz>
       <div className="quiz-container">
-        <h1 className="main-header">QUIZ APP</h1>
+        <h1 className="main-header">QUIZ APP </h1>
         <hr />
         {result ? (
           <>
