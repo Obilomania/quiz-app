@@ -184,5 +184,149 @@ const TheQuiz = styled.div`
     font-weight: 500;
     letter-spacing: 0;
   }
+  @media screen and (max-width: 1200px) {
+    h1 {
+      font-weight: 500;
+      letter-spacing: 0.2rem;
+    }
+    h3 {
+      font-weight: 500;
+      line-height: 1.5rem;
+    }
+    .quiz-container {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 1rem;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      padding: 1.5rem;
+      border-radius: 0.4rem;
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 1.5rem;
+        width: 100%;
+        li {
+          list-style: none;
+          border: 1px solid darkgray;
+          width: 100%;
+          padding: 0.8rem;
+          border-radius: 0.4rem;
+          border-radius: 0.4rem;
+          cursor: pointer;
+        }
+        .correct {
+          border: 2px solid lightgreen;
+          background: #d0fad0;
+        }
+        .wrong {
+          border: 2px solid lightred;
+          background: #fad0d0;
+        }
+      }
+      button {
+        width: 30%;
+        padding: 0.4rem;
+        margin: auto;
+        font-size: 1rem;
+        border-radius: 0.4rem;
+        background: lightgray;
+        border: 1px solid lightgray;
+        cursor: pointer;
+        transition: 400ms all ease;
+        &:hover {
+          border: 1px solid gray;
+        }
+      }
+      .index {
+        margin: auto;
+        font-size: 0.8rem;
+      }
+    }
+    .scoreCard {
+      margin: auto;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+    h1 {
+      font-weight: 500;
+      letter-spacing: 0.2rem;
+    }
+    h3 {
+      font-weight: 500;
+      line-height: 1.5rem;
+    }
+    .quiz-container {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      gap: 1rem;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      padding: 1.5rem;
+      border-radius: 0.4rem;
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 1.5rem;
+        width: 100%;
+        li {
+          list-style: none;
+          border: 1px solid darkgray;
+          width: 100%;
+          padding: 0.8rem;
+          border-radius: 0.4rem;
+          border-radius: 0.4rem;
+          cursor: pointer;
+        }
+        .correct {
+          border: 2px solid lightgreen;
+          background: #d0fad0;
+        }
+        .wrong {
+          border: 2px solid lightred;
+          background: #fad0d0;
+        }
+      }
+      button {
+        width: 30%;
+        padding: 0.4rem;
+        margin: auto;
+        font-size: 1rem;
+        border-radius: 0.4rem;
+        background: lightgray;
+        border: 1px solid lightgray;
+        cursor: pointer;
+        transition: 400ms all ease;
+        &:hover {
+          border: 1px solid gray;
+        }
+      }
+      .index {
+        margin: auto;
+        font-size: 0.8rem;
+      }
+    }
+    .scoreCard {
+      margin: auto;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+  }
+  @media screen and (max-width: 420px) {
+  }
+  @media screen and (max-width: 350px) {
+  }
 `;
 export default Quiz;
