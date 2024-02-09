@@ -1,21 +1,35 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { questions } from "../../assets/questions";
 
 const Quiz = () => {
+  const [index, setIndex] = useState(0);
+  const [theQuestions, setTheQuestions] = useState(questions[index]);
+
+  const checkAnswer = (e, answer) => {
+    if (theQuestions.answer === answer) {
+      e.target.classList.add("correct");
+    } else {
+      e.target.classList.add("wrong");
+    }
+  };
+  console.log(theQuestions);
   return (
     <TheQuiz>
       <div className="quiz-container">
         <h1 className="main-header">QUIZ APP</h1>
         <hr />
         <h3>
-          1. Who is responsible for creating and designing the client side of a web
-          app?
+          {index + 1}. &nbsp; {theQuestions.question}
         </h3>
         <ul>
-          <li>Front End Developer</li>
-          <li>Back End Developer</li>
-          <li>DevOps</li>
-          <li>Cyber Security</li>
-          <li>Poject Manager</li>
+          <li onClick={(e) => checkAnswer(e, 1)}>{theQuestions.firstOption}</li>
+          <li onClick={(e) => checkAnswer(e, 2)}>
+            {theQuestions.secondOption}
+          </li>
+          <li onClick={(e) => checkAnswer(e, 3)}>{theQuestions.thirdOption}</li>
+          <li onClick={(e) => checkAnswer(e, 4)}>{theQuestions.forthOption}</li>
+          <li onClick={(e) => checkAnswer(e, 5)}>{theQuestions.fifthOption}</li>
         </ul>
         <button>Next</button>
       </div>
@@ -66,6 +80,14 @@ const TheQuiz = styled.div`
         padding: 0.8rem;
         border-radius: 0.4rem;
         border-radius: 0.4rem;
+      }
+      .correct {
+        border: 2px solid lightgreen;
+        background: #d0fad0;
+      }
+      .wrong {
+        border: 2px solid lightred;
+        background: #fad0d0;
       }
     }
     button {
