@@ -1,12 +1,11 @@
-import Quiz from "./components/Quiz/Quiz"
+import Quiz from "./components/Quiz";
 
 function App() {
-
   return (
     <>
-     <Quiz/> 
+      <Quiz />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

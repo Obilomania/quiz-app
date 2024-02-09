@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
-import { questions } from "../../assets/questions";
+import { questions } from "../assets/questions";
+import Footer from "./Footer";
 
 const Quiz = () => {
   let [index, setIndex] = useState(0);
@@ -102,6 +103,7 @@ const Quiz = () => {
           </>
         )}
       </div>
+      <Footer />
     </TheQuiz>
   );
 };
@@ -112,6 +114,7 @@ const TheQuiz = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   hr {
     background: darkgray;
     height: 0.1rem;
