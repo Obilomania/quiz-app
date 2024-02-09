@@ -48,12 +48,12 @@ export const questions = [
   },
   {
     question:
-      "Which programming language is popularly known as the language of the web?",
-    firstOption: "Ruby and Rails",
-    secondOption: "C#",
-    thirdOption: "Python",
-    forthOption: "Javascript",
-    fifthOption: "Java",
-    answer: 4,
+      "Who designed this quiz app to teach his mentees?",
+    firstOption: "Obinna Ishmael Iloanya",
+    secondOption: "Deborah Olodu",
+    thirdOption: "Emerie X",
+    forthOption: "David Osh",
+    fifthOption: "None of the above",
+    answer: 1,
   },
 ];

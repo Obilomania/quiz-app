@@ -1,37 +1,106 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import { questions } from "../../assets/questions";
 
 const Quiz = () => {
-  const [index, setIndex] = useState(0);
+  let [index, setIndex] = useState(0);
+  let [lockOptions, setLockOptions] = useState(false);
+  let [result, setResult] = useState(false);
   const [theQuestions, setTheQuestions] = useState(questions[index]);
+  const [correctScore, setCorrectScore] = useState(0);
+  const firstOption = useRef(null);
+  const secondOption = useRef(null);
+  const thirdOption = useRef(null);
+  const forthOption = useRef(null);
+  const fifthOption = useRef(null);
+
+  let optionsArray = [
+    firstOption,
+    secondOption,
+    thirdOption,
+    forthOption,
+    fifthOption,
+  ];
 
   const checkAnswer = (e, answer) => {
-    if (theQuestions.answer === answer) {
-      e.target.classList.add("correct");
-    } else {
-      e.target.classList.add("wrong");
+    if (lockOptions === false) {
+      if (theQuestions.answer === answer) {
+        e.target.classList.add("correct");
+        setLockOptions(true);
+        setCorrectScore((prev) => prev + 1);
+      } else {
+        e.target.classList.add("wrong");
+        setLockOptions(true);
+        optionsArray[theQuestions.answer - 1].current.classList.add("correct");
+      }
     }
   };
-  console.log(theQuestions);
+
+  const nextQuestion = () => {
+    if (lockOptions === true) {
+      if (index === questions.length - 1) {
+        setResult(true);
+        return 0;
+      }
+      setIndex(++index);
+      setTheQuestions(questions[index]);
+      setLockOptions(false);
+      optionsArray.map((option) => option.current.classList.remove("wrong"));
+      optionsArray.map((option) => option.current.classList.remove("correct"));
+      return null;
+    } else {
+      alert("Please choose from the options");
+    }
+  };
+
+  const resetQuiz = () => {
+    setIndex(0);
+    setTheQuestions(questions[0]);
+    setCorrectScore(0);
+    setLockOptions(false);
+    setResult(false);
+  };
   return (
     <TheQuiz>
       <div className="quiz-container">
         <h1 className="main-header">QUIZ APP</h1>
         <hr />
-        <h3>
-          {index + 1}. &nbsp; {theQuestions.question}
-        </h3>
-        <ul>
-          <li onClick={(e) => checkAnswer(e, 1)}>{theQuestions.firstOption}</li>
-          <li onClick={(e) => checkAnswer(e, 2)}>
-            {theQuestions.secondOption}
-          </li>
-          <li onClick={(e) => checkAnswer(e, 3)}>{theQuestions.thirdOption}</li>
-          <li onClick={(e) => checkAnswer(e, 4)}>{theQuestions.forthOption}</li>
-          <li onClick={(e) => checkAnswer(e, 5)}>{theQuestions.fifthOption}</li>
-        </ul>
-        <button>Next</button>
+        {result ? (
+          <>
+            {" "}
+            <h1 className="scoreCard">
+              YOU SCORED {correctScore} OUT OF {questions.length}
+            </h1>
+            <button onClick={resetQuiz}>Reset</button>
+          </>
+        ) : (
+          <>
+            <h3>
+              {index + 1}. &nbsp; {theQuestions.question}
+            </h3>
+            <ul>
+              <li onClick={(e) => checkAnswer(e, 1)} ref={firstOption}>
+                {theQuestions.firstOption}
+              </li>
+              <li onClick={(e) => checkAnswer(e, 2)} ref={secondOption}>
+                {theQuestions.secondOption}
+              </li>
+              <li onClick={(e) => checkAnswer(e, 3)} ref={thirdOption}>
+                {theQuestions.thirdOption}
+              </li>
+              <li onClick={(e) => checkAnswer(e, 4)} ref={forthOption}>
+                {theQuestions.forthOption}
+              </li>
+              <li onClick={(e) => checkAnswer(e, 5)} ref={fifthOption}>
+                {theQuestions.fifthOption}
+              </li>
+            </ul>
+            <button onClick={nextQuestion}>Next</button>
+            <div className="index">
+              {index + 1} OF {questions.length} QUESTIONS
+            </div>
+          </>
+        )}
       </div>
     </TheQuiz>
   );
@@ -80,6 +149,7 @@ const TheQuiz = styled.div`
         padding: 0.8rem;
         border-radius: 0.4rem;
         border-radius: 0.4rem;
+        cursor: pointer;
       }
       .correct {
         border: 2px solid lightgreen;
@@ -98,11 +168,21 @@ const TheQuiz = styled.div`
       border-radius: 0.4rem;
       background: lightgray;
       border: 1px solid lightgray;
+      cursor: pointer;
       transition: 400ms all ease;
       &:hover {
         border: 1px solid gray;
       }
     }
+    .index {
+      margin: auto;
+      font-size: 0.8rem;
+    }
+  }
+  .scoreCard {
+    margin: auto;
+    font-weight: 500;
+    letter-spacing: 0;
   }
 `;
 export default Quiz;
